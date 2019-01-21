@@ -1,5 +1,7 @@
 LibreERP
 ----
+[![Integration level](https://dash.yunohost.org/integration/libreerp.svg)](https://dash.yunohost.org/appci/app/libreerp)  
+[![Install libreerp with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=libreerp)
 
 LibreERP is a suite of web based open source business apps. LibreERP is a fork of Odoo Community Edition.
 
