@@ -4,6 +4,11 @@ location / {
         }
         try_files $uri @{{ app }};
 }
+
+   client_max_body_size 50M; 
+   client_body_timeout 60m;
+   fastcgi_read_timeout 60m;
+   
 location @{{ app }} {
     proxy_pass http://127.0.0.1:{{ port }};
     proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
