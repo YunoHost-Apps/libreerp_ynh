@@ -7,7 +7,7 @@ https://example.com/erp/ will NOT work
 To connect on your LibreERP
 -----------
 - Go on https://YOURDOMAIN/web
-- Use your master password
+- Login as "admin" with your master Yunohost password
 
 About licences
 -----------
