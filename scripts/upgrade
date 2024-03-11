@@ -128,11 +128,11 @@ ynh_script_progression --message="Building app..." --weight=1
 if ! wkhtmltopdf --version | grep "wkhtmltopdf 0.12.4 (with patched qt)"; then
 	# The debian package has a bug so we deploy a more recent version
 	if [ -f '../manifest.json' ] ; then
-		ynh_setup_source /usr/
+		ynh_setup_source /usr/ --full_replace=1
 	else
 		OLD_YNH_CWD=$YNH_CWD
 		YNH_CWD=$YNH_CWD/../settings/conf
-		ynh_setup_source /usr/
+		ynh_setup_source /usr/ --full_replace=1
 		YNH_CWD=$OLD_YNH_CWD
 	fi
 fi
