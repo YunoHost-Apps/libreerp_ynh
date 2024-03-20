@@ -111,20 +111,9 @@ fi
 #=================================================
 ynh_script_progression --message="Building app..." --weight=1
 
-if ! wkhtmltopdf --version | grep "wkhtmltopdf 0.12.4 (with patched qt)"; then
-	# The debian package has a bug so we deploy a more recent version
-	if [ -f '../manifest.json' ] ; then
-		ynh_setup_source /usr/
-	else
-		OLD_YNH_CWD=$YNH_CWD
-		YNH_CWD=$YNH_CWD/../settings/conf
-		ynh_setup_source /usr/
-		YNH_CWD=$OLD_YNH_CWD
-	fi
-fi
 pushd $final_path
 	ynh_exec_warn_less ynh_exec_as $app RUSTUP_HOME="$final_path"/.rustup CARGO_HOME="$final_path"/.cargo bash -c 'curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -q -y'
-	export PATH="$PATH:$final_path/.cargo/bin:$final_path/.local/bin:/usr/local/sbin" 
+	export PATH="$PATH:$final_path/.cargo/bin:$final_path/.local/bin:/usr/local/sbin"
 	if grep "python3" $final_path/$appname/$FORKNAME-bin ; then
 		python3 -m venv venv
 		venv/bin/pip3 install --upgrade pip

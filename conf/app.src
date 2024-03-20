@@ -1,5 +1,0 @@
-SOURCE_URL=https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
-SOURCE_SUM=049b2cdec9a8254f0ef8ac273afaf54f7e25459a273e27189591edc7d7cf29db
-SOURCE_FILE=wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
-SOURCE_FORMAT=tar.xz
-SOURCE_SUM_PRG=sha256sum
