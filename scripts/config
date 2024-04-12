@@ -82,7 +82,7 @@ run__update_code() {
       ynh_exec_as_app $VENV/bin/pip3 install -Ur $CUSTOM_REPO/requirements.txt
   fi
   ynh_script_progression "Updating odoo addons and restarting the service"
-  ynh_exec_as_app $VENV/bin/python $install_dir/libreerp/odoo-bin shell -d $app -c /etc/$app/main.conf  /proc/self/fd/1 <<ODOODOC
+  ynh_exec_as_app $VENV/bin/python $install_dir/libreerp/odoo-bin shell --no-http -d $app -c /etc/$app/main.conf --logfile /proc/self/fd/1 <<ODOODOC
 if hasattr(self.env['ir.module.module'], 'upgrade_changed_checksum_shell'):
   self.env['ir.module.module'].upgrade_changed_checksum_shell()
 else:
