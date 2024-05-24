@@ -190,6 +190,17 @@ ynh_add_swap () {
 	# If there's enough space for a swap, and no existing swap here
 	if [ $swap_size -ne 0 ] && [ ! -e /swap_$app ]
 	then
+		# Check if / is mounted on btrfs
+		if [ "$(awk '$2 == "/" {print $3}' /proc/mounts)" = "btrfs" ]
+		then
+			if [ "$(uname -r | awk -F. '{print $1}')" -lt 5 ]
+			then
+				ynh_print_warn --message="The main mountpoint of your system '/' is on an BTRFS filesystem, but current kernel does not support swap files on BTRFS. Swap file will not be added to prevent file system corruption. If you still want to activate the swap, please update your kernel to at least version 5."
+				return
+			fi
+			truncate -s 0 /swap_$app
+			chattr +C /swap_$app
+		fi
 		# Preallocate space for the swap file, fallocate may sometime not be used, use dd instead in this case
 		if ! fallocate -l ${swap_size}K /swap_$app
 		then
