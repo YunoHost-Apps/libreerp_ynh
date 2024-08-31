@@ -1,6 +1,6 @@
 #!/bin/bash
 source /usr/share/yunohost/helpers
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
 CUSTOM_ADDONS=$install_dir/custom-addons
 VENV=$install_dir/venv
@@ -10,45 +10,45 @@ REQUIREMENTS_TXT=$CUSTOM_REPO/requirements.txt
 
 _setup_git() {
   pushd $CUSTOM_ADDONS>/dev/null
-    ynh_exec_as $app git config --global user.email $app@$(hostname)
-    ynh_exec_as $app git config --global user.name $app
-    ynh_exec_as $app git config --global init.defaultBranch main
-    ynh_exec_as $app git config --global pull.rebase false
+    ynh_exec_as_app git config --global user.email $app@$(hostname)
+    ynh_exec_as_app git config --global user.name $app
+    ynh_exec_as_app git config --global init.defaultBranch main
+    ynh_exec_as_app git config --global pull.rebase false
   popd>/dev/null
 }
 
 get__custom_repo() {
   _setup_git
   if [ -d $CUSTOM_REPO ]; then
-    echo '"'$(ynh_exec_as $app git -C $CUSTOM_REPO remote get-url origin)'"'
+    echo '"'$(ynh_exec_as_app git -C $CUSTOM_REPO remote get-url origin)'"'
   fi
 }
 
 get__custom_branch() {
   _setup_git
   if [ -d $CUSTOM_REPO ]; then
-    echo '"'$(ynh_exec_as $app git -C $CUSTOM_REPO rev-parse --abbrev-ref HEAD)'"'
+    echo '"'$(ynh_exec_as_app git -C $CUSTOM_REPO rev-parse --abbrev-ref HEAD)'"'
   fi
 }
 
 run__update_code() {
   _setup_git
   if [ -d $CUSTOM_REPO ]; then
-    ynh_script_progression --message="Updating custom code"
+    ynh_script_progression "Updating custom code"
     if [ -z "$custom_repo" ]; then
       rm -rf $CUSTOM_REPO
     else
       pushd $CUSTOM_REPO
         if [ ! -z "$custom_branch" ]; then
-          ynh_exec_as $app git -C $CUSTOM_REPO fetch origin $custom_branch
-          ynh_exec_as $app git -C $CUSTOM_REPO checkout $custom_branch
+          ynh_exec_as_app git -C $CUSTOM_REPO fetch origin $custom_branch
+          ynh_exec_as_app git -C $CUSTOM_REPO checkout $custom_branch
         fi
-        ynh_exec_as $app git -C $CUSTOM_REPO reset --hard
-        ynh_exec_as $app git -C $CUSTOM_REPO pull -X theirs
+        ynh_exec_as_app git -C $CUSTOM_REPO reset --hard
+        ynh_exec_as_app git -C $CUSTOM_REPO pull -X theirs
       popd
     fi
   else
-    ynh_script_progression --message="Installing custom code from $custom_repo"
+    ynh_script_progression "Installing custom code from $custom_repo"
     pushd $CUSTOM_ADDONS
       if [ ! -z "$custom_repo" ]; then
         if [ ! -z "$custom_branch" ]; then
@@ -56,34 +56,34 @@ run__update_code() {
         else
           CUSTOM_BRANCH=""
         fi
-        ynh_exec_as $app git clone $custom_repo $CUSTOM_REPO $CUSTOM_BRANCH
+        ynh_exec_as_app git clone $custom_repo $CUSTOM_REPO $CUSTOM_BRANCH
       fi
     popd
   fi
   if [ ! -f "$REPOS_YML" ]; then
-      ynh_print_warn --message="Could not find a repos.yml file in $CUSTOM_REPO"
+      ynh_print_warn "Could not find a repos.yml file in $CUSTOM_REPO"
   else
-      ynh_script_progression --message="Resetting repos and running gitaggregate"
+      ynh_script_progression "Resetting repos and running gitaggregate"
       pushd $CUSTOM_ADDONS
         for GITDIR in $(find $CUSTOM_ADDONS -name .git); do
-          ynh_exec_as $app git -C $(dirname $GITDIR) reset --hard
+          ynh_exec_as_app git -C $(dirname $GITDIR) reset --hard
         done
-        ynh_exec_as $app $VENV/bin/pip3 install -U git-aggregator
-        ynh_exec_as $app $VENV/bin/gitaggregate --force --no-color -c $REPOS_YML
+        ynh_exec_as_app $VENV/bin/pip3 install -U git-aggregator
+        ynh_exec_as_app $VENV/bin/gitaggregate --force --no-color -c $REPOS_YML
       popd
   fi
   pushd $CUSTOM_ADDONS
       # link addons to custom-addons
       for MANIFEST in $(find $CUSTOM_ADDONS -name __manifest__.py); do
-        ynh_exec_as $app ln -rsnf $(dirname $MANIFEST)
+        ynh_exec_as_app ln -rsnf $(dirname $MANIFEST)
       done
       find $CUSTOM_ADDONS -maxdepth 1 -xtype l -delete
   popd
   if [ -f $REQUIREMENTS_TXT ]; then
-      ynh_exec_as $app $VENV/bin/pip3 install -Ur $CUSTOM_REPO/requirements.txt
+      ynh_exec_as_app $VENV/bin/pip3 install -Ur $CUSTOM_REPO/requirements.txt
   fi
-  ynh_script_progression --message="Updating odoo addons and restarting the service"
-  sudo -u $app $VENV/bin/python $install_dir/libreerp/odoo-bin shell -d $app -c /etc/$app/main.conf --logfile /proc/self/fd/1 <<ODOODOC
+  ynh_script_progression "Updating odoo addons and restarting the service"
+  ynh_exec_as_app $VENV/bin/python $install_dir/libreerp/odoo-bin shell -d $app -c /etc/$app/main.conf  /proc/self/fd/1 <<ODOODOC
 if hasattr(self.env['ir.module.module'], 'upgrade_changed_checksum_shell'):
   self.env['ir.module.module'].upgrade_changed_checksum_shell()
 else:

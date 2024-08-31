@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #=================================================
-# COMMON VARIABLES
+# COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
 appname="libreerp"
@@ -16,10 +16,6 @@ if [ "$app_version" = "9" ] || [ "$app_version" = "8" ]; then
 else
     bin_file="$install_dir/venv/bin/python3 $install_dir/$appname/$FORKNAME-bin"
 fi
-
-#=================================================
-# PERSONAL HELPERS
-#=================================================
 
 function debranding() {
     # Remove Odoo references to avoid trademark issue
@@ -47,12 +43,11 @@ function setup_files() {
     debranding
     mkdir -p "$install_dir/custom-addons"
 
-    chmod 750 "$install_dir"
-    chmod -R o-rwx "$install_dir"
-    chown -R "$app:$app" "$install_dir"
-
+    #REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$install_dir"
+    #REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
+    #REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:$app" "$install_dir"
     touch "/var/log/$app.log"
-    chown "$app:$app" "/var/log/$app.log"
+    #REMOVEME? Assuming ynh_config_add_logrotate is called, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown "$app:$app" "/var/log/$app.log"
 
     if [ ! -f "$conf_file" ]; then
 		mkdir -p "$(dirname "$conf_file")"
@@ -62,11 +57,11 @@ function setup_files() {
 
         # Autoinstall the LDAP auth module
         if [ -f "$install_dir/$appname/$FORKNAME-bin" ]; then
-            ynh_replace_string --target_file="$install_dir/$appname/addons/auth_ldap/__manifest__.py" \
-                --match_string="^{$" --replace_string="{'auto_install': True,"
+            ynh_replace --file="$install_dir/$appname/addons/auth_ldap/__manifest__.py" \
+                --match="^{$" --replace="{'auto_install': True,"
         else
-            ynh_replace_string --target_file="$install_dir/$appname/addons/auth_ldap/__openerp__.py" \
-                --match_string="'auto_install': False" --replace_string="'auto_install': True"
+            ynh_replace --file="$install_dir/$appname/addons/auth_ldap/__openerp__.py" \
+                --match="'auto_install': False" --replace="'auto_install': True"
         fi
     fi
 }
@@ -78,21 +73,21 @@ function setup_database() {
     # Load translation
     #param=" --without-demo True --addons-path $install_dir/$appname/addons --db_user $app --db_password $db_pwd --db_host 127.0.0.1 --db_port 5432 --db-filter '^$app\$' -d $app "
     param=" -c $conf_file -d $app "
-    ynh_exec_as "$app" $bin_file -c "$conf_file" --stop-after-init -i base -d "$app"
-    ynh_exec_as "$app" $bin_file -c "$conf_file" --stop-after-init -i auth_ldap -d "$app"
-    ynh_exec_as "$app" $bin_file -c "$conf_file" --stop-after-init --load-language $lang -d "$app"
+    ynh_exec_as_app $bin_file -c "$conf_file" --stop-after-init -i base -d "$app"
+    ynh_exec_as_app $bin_file -c "$conf_file" --stop-after-init -i auth_ldap -d "$app"
+    ynh_exec_as_app $bin_file -c "$conf_file" --stop-after-init --load-language $lang -d "$app"
     # Configure language, timezone and ldap
-    ynh_exec_as "$app" $bin_file shell -c "$conf_file" -d "$app" <<< \
+    ynh_exec_as_app $bin_file shell -c "$conf_file" -d "$app" <<< \
 "
 self.env['res.users'].search([['login', '=', 'admin']])[0].write({'password': '$admin_password'})
 self.env.cr.commit()
 "
-    ynh_exec_as "$app" $bin_file shell -c "$conf_file" -d "$app" <<< \
+    ynh_exec_as_app $bin_file shell -c "$conf_file" -d "$app" <<< \
 "
 self.write({'tz':'$tz','lang':'$lang'})
 self.env.cr.commit()
 "
-    ynh_exec_as "$app" $bin_file shell -c "$conf_file" -d "$app" <<< \
+    ynh_exec_as_app $bin_file shell -c "$conf_file" -d "$app" <<< \
 "
 template=env['res.users'].create({
   'login':'template',
@@ -135,12 +130,8 @@ ynh_configure () {
 		content3="list_db = False"
 	fi
 
-	ynh_add_config --template="$TEMPLATE" --destination="$DEST"
+	ynh_config_add --template="$TEMPLATE" --destination="$DEST"
 }
-
-#=================================================
-# EXPERIMENTAL HELPERS
-#=================================================
 
 # Add swap
 #
@@ -164,7 +155,7 @@ ynh_add_swap () {
 	# Swap on SD card only if it's is specified
 	if ynh_is_main_device_a_sd_card && [ "$SD_CARD_CAN_SWAP" == "0" ]
 	then
-		ynh_print_warn --message="The main mountpoint of your system '/' is on an SD card, swap will not be added to prevent some damage of this one, but that can cause troubles for the app $app. If you still want activate the swap, you can relaunch the command preceded by 'SD_CARD_CAN_SWAP=1'"
+		ynh_print_warn "The main mountpoint of your system '/' is on an SD card, swap will not be added to prevent some damage of this one, but that can cause troubles for the app $app. If you still want activate the swap, you can relaunch the command preceded by 'SD_CARD_CAN_SWAP=1'"
 		return
 	fi
 
@@ -233,7 +224,3 @@ ynh_is_main_device_a_sd_card () {
 		return 1
 	fi
 }
-
-#=================================================
-# FUTURE OFFICIAL HELPERS
-#=================================================
