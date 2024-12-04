@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # LibreERP para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/libreerp.svg)](https://dash.yunohost.org/appci/app/libreerp) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/libreerp.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/libreerp.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/libreerp)](https://ci-apps.yunohost.org/ci/apps/libreerp/)
+![Estado funcional](https://apps.yunohost.org/badge/state/libreerp)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/libreerp)
 
 [![Instalar LibreERP con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=libreerp)
 
@@ -46,7 +48,7 @@ LibreERP is forked from Odoo Community Edition. The name is change due to Odoo t
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/libreerp_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/libreerp_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 

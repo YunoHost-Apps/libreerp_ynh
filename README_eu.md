@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # LibreERP YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/libreerp.svg)](https://dash.yunohost.org/appci/app/libreerp) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/libreerp.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/libreerp.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/libreerp)](https://ci-apps.yunohost.org/ci/apps/libreerp/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/libreerp)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/libreerp)
 
 [![Instalatu LibreERP YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=libreerp)
 

@@ -5,7 +5,9 @@ NON debe editarse manualmente.
 
 # LibreERP para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/libreerp.svg)](https://dash.yunohost.org/appci/app/libreerp) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/libreerp.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/libreerp.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/libreerp)](https://ci-apps.yunohost.org/ci/apps/libreerp/)
+![Estado de funcionamento](https://apps.yunohost.org/badge/state/libreerp)
+![Estado de mantemento](https://apps.yunohost.org/badge/maintained/libreerp)
 
 [![Instalar LibreERP con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=libreerp)
 
