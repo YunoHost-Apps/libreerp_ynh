@@ -5,24 +5,73 @@ test_format = 1.0
 [default]
     exclude = ["change_url"]
 
-    args.version = "14"
+    args.version = "18"
     args.tz = "Etc/GMT"
 
-    # ------------
-    # Tests to run
-    # ------------
-
-    test_upgrade_from.54f28204591c902ebe4a3a6b662e88e8fa598fde.name = "12.0~ynh6"
-    test_upgrade_from.c82770776ccf5ea14a1b47f0ee6a113858e749e6.name = "15.0~ynh1"
-
-[no_multisite_v15]
+[no_multisite_v17]
     exclude = ["change_url"]
 
-    args.version = "15"
+    args.version = "17"
     args.tz = "Etc/GMT"
 
 [no_multisite_v16]
     exclude = ["change_url"]
 
     args.version = "16"
+    args.tz = "Etc/GMT"
+
+[no_multisite_v15]
+    exclude = ["change_url"]
+
+    args.version = "15"
+    args.tz = "Etc/GMT"
+    test_upgrade_from.c82770776ccf5ea14a1b47f0ee6a113858e749e6.name = "15.0~ynh1"
+
+[no_multisite_v14]
+    exclude = ["change_url"]
+
+    args.version = "14"
+    args.tz = "Etc/GMT"
+    test_upgrade_from.54f28204591c902ebe4a3a6b662e88e8fa598fde.name = "12.0~ynh6"
+
+[no_multisite_v13]
+    exclude = ["change_url"]
+
+    args.version = "13"
+    args.tz = "Etc/GMT"
+
+[no_multisite_v12]
+    exclude = ["change_url"]
+
+    args.version = "12"
+    args.tz = "Etc/GMT"
+
+[no_multisite_v11]
+    exclude = ["change_url"]
+
+    args.version = "11"
+    args.tz = "Etc/GMT"
+
+[no_multisite_v10]
+    exclude = ["change_url"]
+
+    args.version = "10"
+    args.tz = "Etc/GMT"
+
+[no_multisite_v9]
+    exclude = ["change_url"]
+
+    args.version = "9"
+    args.tz = "Etc/GMT"
+
+[no_multisite_v8]
+    exclude = ["change_url"]
+
+    args.version = "8"
+    args.tz = "Etc/GMT"
+
+[no_multisite_v7]
+    exclude = ["change_url"]
+
+    args.version = "7"
     args.tz = "Etc/GMT"

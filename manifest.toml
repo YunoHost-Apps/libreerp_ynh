@@ -42,7 +42,7 @@ ram.runtime = "200M"
     ask.en = "Choose the version you want"
     ask.fr = "Choisissez la version désirée"
     type = "select"
-    choices = ["12", "14", "16"]
+    choices = ["7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"]
     default = "16"
 
     [install.lang]
@@ -68,19 +68,65 @@ ram.runtime = "200M"
 
 [resources]
     [resources.sources]
+
+    [resources.sources.main_18_oca]
+    url = "https://github.com/OCA/OCB/archive/b666a56fd345ccc404cba2c532bb47fdb31c63e0.tar.gz"
+    sha256 = "175a9626377939e0131d67a457c492dc1e1d0c4cb6f32007916a15d82619fae2"
+    prefetch = false
+
+    [resources.sources.main_17_oca]
+    url = "https://github.com/OCA/OCB/archive/c5b2b71479460452f25da22acb048bd129e044b8.tar.gz"
+    sha256 = "ae89a7bc145b40f5f5a46be3251b7a05a22df133ea4dd010f163b0bb20a8d1a9"
+    prefetch = false
+
     [resources.sources.main_16_oca]
-    url = "https://github.com/OCA/OCB/archive/9d5ff52da5ec65a21a00a46e21783a2c6188dd80.tar.gz"
-    sha256 = "3c3a95ec627e3807c85b0b2fd13a484b0b990426efb4905681aaee8768386e39"
+    url = "https://github.com/OCA/OCB/archive/cddbc118ec76f31645f82033cd5b0e73b9b86364.tar.gz"
+    sha256 = "75e70199962e962500c7d4b79382154d00b1d625480a23cbd00dedee5a203c61"
+    prefetch = false
+
+    [resources.sources.main_15_oca]
+    url = "https://github.com/OCA/OCB/archive/ebba5c2816c5d7b3912f888472387762f5354ed9.tar.gz"
+    sha256 = "a53ac9714a9bcf45fde8ee65f6d57bb8b32cc3c47ccb00424ffa96477534e11a"
     prefetch = false
 
     [resources.sources.main_14_oca]
-    url = "https://github.com/OCA/OCB/archive/890a6aa943aafff149924b1aca2517a95a1b352f.tar.gz"
-    sha256 = "41decd11b20d8f99329c413faec9abd1e5ee75076e5f47a33ab806483f51926c"
+    url = "https://github.com/OCA/OCB/archive/59cf062c23728ea568b80688db94215a5c73af19.tar.gz"
+    sha256 = "f12f366a92ff70b5995167dd4e2875a38cf386464c8fb26a94c4d344a21d652c"
+    prefetch = false
+
+    [resources.sources.main_13_oca]
+    url = "https://github.com/OCA/OCB/archive/e473a797f8f5df16901efa3e099c1e06187e8db1.tar.gz"
+    sha256 = "3f22bb205e22dd9bbe6822163b5ae5bcd0072138e9302aa2f573080f46ec21cd"
     prefetch = false
 
     [resources.sources.main_12_oca]
-    url = "https://github.com/OCA/OCB/archive/daa274eb48324d563e1096e334a5a73034be71dc.tar.gz"
-    sha256 = "73bd925d3bdc402248548f92908a07e8475b6703d063609ba7f0729060c59aac"
+    url = "https://github.com/OCA/OCB/archive/978b2cf5c9356317107c8018e5aa5d233ecd23bc.tar.gz"
+    sha256 = "e9306176efac13570b0340e09ec3a6eebcac7993bb8d254370c316f2cea8f85f"
+    prefetch = false
+
+    [resources.sources.main_11_oca]
+    url = "https://github.com/OCA/OCB/archive/700f30ab649eaf2b6c3f83adb405dc28704a2f83.tar.gz"
+    sha256 = "9f270f20d512751caae2ff79fb9f2227f9fdf619ff36a34d5e4a20b9eedd955c"
+    prefetch = false
+
+    [resources.sources.main_10_oca]
+    url = "https://github.com/OCA/OCB/archive/83823128c2225c5ad826cbea5298ab4564e8ab4e.tar.gz"
+    sha256 = "ca18691e1f43556f1b16abd2a97098ae93c41148c717d88c7bd5ccf3c4869e36"
+    prefetch = false
+
+    [resources.sources.main_9_oca]
+    url = "https://github.com/OCA/OCB/archive/7dde2945201e3e33c46a2d52ff9ba55f903432a1.tar.gz"
+    sha256 = "1720ab772fd32a8fd009c80eb6bce341da8d73ce86a5bc61b37b8edf338e74cd"
+    prefetch = false
+
+    [resources.sources.main_8_oca]
+    url = "https://github.com/OCA/OCB/archive/279529c088d28b8ad58da3314a829b0b9421dff0.tar.gz"
+    sha256 = "f4e5bda61d27d401da368cdcb46d6a86878cf4804f04f04400a2a2b61803861c"
+    prefetch = false
+
+    [resources.sources.main_7_oca]
+    url = "https://github.com/OCA/OCB/archive/5520178a97f5677b121575fb14ff860eed674e7e.tar.gz"
+    sha256 = "3462e0d7239e923c06ebcea01fee8b3a81a7636dd7fbb343c5ee21f75b715595"
     prefetch = false
 
     [resources.system_user]
@@ -96,29 +142,54 @@ ram.runtime = "200M"
 
     [resources.apt]
     packages = [
-        "curl",
-        "postgresql",
-        "xfonts-75dpi",
-        "xfonts-base",
-        "wkhtmltopdf",
-        "node-less",
-        "python3-dev",
-        "gcc",
-        "libldap2-dev",
-        "libssl-dev",
-        "libsasl2-dev",
-        "python3-pip",
-        "python3-dev",
-        "python3-venv",
-        "python3-wheel",
-        "libxslt-dev",
-        "libzip-dev",
-        "python3-setuptools",
-        "libjpeg-dev",
-        "zlib1g-dev",
-        "libfreetype6-dev",
-        "libffi-dev",
-        "libpq-dev",
+        "adduser",
+        "fonts-dejavu-core\\|fonts-freefont-ttf\\|fonts-freefont-otf\\|fonts-noto-core",
+        "fonts-inconsolata",
+        "fonts-font-awesome",
+        "fonts-roboto-unhinted",
+        "gsfonts",
+        "libjs-underscore",
+        "lsb-base",
+        "postgresql-client",
+        "python3-asn1crypto",
+        "python3-babel",
+        "python3-cbor2",
+        "python3-chardet",
+        "python3-dateutil",
+        "python3-decorator",
+        "python3-docutils",
+        "python3-freezegun",
+        "python3-geoip2",
+        "python3-pil",
+        "python3-jinja2",
+        "python3-libsass",
+        "python3-lxml-html-clean\\|python3-lxml",
+        "python3-mako",
+        "python3-mock",
+        "python3-num2words",
+        "python3-ofxparse",
+        "python3-openpyxl",
+        "python3-passlib",
+        "python3-polib",
+        "python3-psutil",
+        "python3-psycopg2",
+        "python3-pydot",
+        "python3-pyparsing",
+        "python3-openssl",
+        "python3-pypdf2",
+        "python3-rjsmin",
+        "python3-qrcode",
+        "python3-renderpm",
+        "python3-reportlab",
+        "python3-requests",
+        "python3-stdnum",
+        "python3-tz",
+        "python3-vobject",
+        "python3-werkzeug",
+        "python3-xlsxwriter",
+        "python3-xlrd",
+        "python3-zeep",
+        "postgresql"
     ]
 
     [resources.database]
