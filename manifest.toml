@@ -189,7 +189,8 @@ ram.runtime = "200M"
         "python3-xlsxwriter",
         "python3-xlrd",
         "python3-zeep",
-        "postgresql"
+        "postgresql",
+        "python3-venv"
     ]
 
     [resources.database]
