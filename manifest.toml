@@ -193,7 +193,26 @@ ram.runtime = "200M"
         "python3-venv",
         "gcc",
         "build-essential",
-        "python3-dev"
+        "python3-dev",
+        "libldap2-dev",
+        "python3-ldap",
+        "python3-yaml",
+        "wkhtmltopdf",
+        "node-less",
+        "libssl-dev",
+        "libsasl2-dev",
+        "python3-pip",
+        "python3-wheel",
+        "libxslt-dev",
+        "libzip-dev",
+        "python3-setuptools",
+        "libjpeg-dev",
+        "zlib1g-dev",
+        "libfreetype6-dev",
+        "libffi-dev",
+        "libpq-dev",
+        "libpcap-dev",
+        "libglew-dev"
     ]
 
     [resources.database]
