@@ -50,26 +50,10 @@ ynh_psql_connect_as --user="$db_user" --password="$db_pwd" --database="$db_name"
 ynh_script_progression --message="Building app..." --weight=1
 
 pushd "$install_dir"
-    ynh_exec_warn_less ynh_exec_as "$app" \
-        RUSTUP_HOME="$install_dir/.rustup" \
-        CARGO_HOME="$install_dir/.cargo" \
-        bash -c 'curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -q -y'
-
-    export PATH="$PATH:$install_dir/.cargo/bin:$install_dir/.local/bin:/usr/local/sbin"
-
-    if grep "python3" "$install_dir/$appname/$FORKNAME-bin" ; then
-        python3 -m venv venv
-        venv/bin/pip3 install --upgrade pip
-        venv/bin/pip3 install wheel
-        venv/bin/pip3 install -r "$appname/requirements.txt"
-    else
-        virtualenv venv
-        venv/bin/pip3 install --upgrade pip
-        venv/bin/pip install wheel
-        venv/bin/pip install -r "$appname/requirements.txt"
-    fi
-    ynh_secure_remove --file="$install_dir/.cargo"
-    ynh_secure_remove --file="$install_dir/.rustup"
+    python3 -m venv venv
+    venv/bin/pip3 install --upgrade pip
+    venv/bin/pip3 install wheel
+    venv/bin/pip3 install -r "$appname/requirements.txt"
 popd
 
 #=================================================
