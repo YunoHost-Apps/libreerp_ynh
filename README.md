@@ -5,7 +5,9 @@ It shall NOT be edited by hand.
 
 # LibreERP for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/libreerp.svg)](https://dash.yunohost.org/appci/app/libreerp) ![Working status](https://ci-apps.yunohost.org/ci/badges/libreerp.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/libreerp.maintain.svg)
+[![Integration level](https://apps.yunohost.org/badge/integration/libreerp)](https://ci-apps.yunohost.org/ci/apps/libreerp/)
+![Working status](https://apps.yunohost.org/badge/state/libreerp)
+![Maintenance status](https://apps.yunohost.org/badge/maintained/libreerp)
 
 [![Install LibreERP with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=libreerp)
 
@@ -28,7 +30,7 @@ Next version are under LGPL-3.0
 LibreERP is forked from Odoo Community Edition. The name is change due to Odoo trademark policy.
 
 
-**Shipped version:** 16.0~ynh3
+**Shipped version:** 16.0~ynh4
 
 **Demo:** <https://www.odoo.com/trial>
 ## :red_circle: Antifeatures
