@@ -1,6 +1,5 @@
 #!/bin/bash
 source /usr/share/yunohost/helpers
-#REMOVEME? ynh_abort_if_errors
 
 CUSTOM_ADDONS=$install_dir/custom-addons
 VENV=$install_dir/venv

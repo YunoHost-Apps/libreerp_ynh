@@ -43,11 +43,11 @@ function setup_files() {
     debranding
     mkdir -p "$install_dir/custom-addons"
 
-    #REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$install_dir"
-    #REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-    #REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:$app" "$install_dir"
+    chmod 750 "$install_dir"
+    chmod -R o-rwx "$install_dir"
+    chown -R "$app:$app" "$install_dir"
     touch "/var/log/$app.log"
-    #REMOVEME? Assuming ynh_config_add_logrotate is called, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown "$app:$app" "/var/log/$app.log"
+    chown "$app:$app" "/var/log/$app.log"
 
     if [ ! -f "$conf_file" ]; then
 		mkdir -p "$(dirname "$conf_file")"

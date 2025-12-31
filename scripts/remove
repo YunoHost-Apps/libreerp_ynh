@@ -31,9 +31,6 @@ ynh_script_progression "Removing various files..."
 # Remove a directory securely
 ynh_safe_rm "/etc/$app"
 
-# Remove the log files
-#REMOVEME? (Apps should not remove their log dir during remove ... this should only happen if --purge is used, and be handled by the core...) ynh_safe_rm "/var/log/$app.log"
-
 #=================================================
 # REMOVE SWAP
 #=================================================
