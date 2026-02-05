@@ -22,12 +22,11 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Restoring the app main directory..."
 
-ynh_restore "$install_dir/$appname"
-ynh_restore "$install_dir/custom-addons"
-ynh_restore "$install_dir/.local"
+ynh_restore "$install_dir"
 
 chmod -R o-rwx "$install_dir"
 chown -R "$app:$app" "$install_dir"
+
 ynh_restore "$conf_file"
 chmod 400 "$conf_file"
 chown "$app:$app" "$conf_file"
@@ -52,10 +51,12 @@ pushd "$install_dir"
     python3 -m venv venv
     venv/bin/pip3 install --upgrade pip
     venv/bin/pip3 install wheel
-    venv/bin/pip3 install -r "$appname/requirements.txt"
+    venv/bin/pip3 install -r "$app/requirements.txt"
 popd
 
-chown -R $app:$app "$install_dir"
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R "$app:$app" "$install_dir"
 
 #=================================================
 # RESTORE VARIOUS FILES

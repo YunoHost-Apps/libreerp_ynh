@@ -14,9 +14,7 @@ ynh_print_info "Declaring files to be backed up..."
 # BACKUP THE APP MAIN DIR
 #=================================================
 
-ynh_backup "$install_dir/$appname"
-ynh_backup "$install_dir/custom-addons"
-ynh_backup "$install_dir/.local"
+ynh_backup "$install_dir"
 
 ynh_backup "$conf_file"
 

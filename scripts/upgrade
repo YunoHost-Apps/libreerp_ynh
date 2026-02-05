@@ -42,7 +42,7 @@ pushd "$install_dir"
     python3 -m venv venv
     venv/bin/pip3 install --upgrade pip
     venv/bin/pip3 install wheel
-    venv/bin/pip3 install -r "$appname/requirements.txt"
+    venv/bin/pip3 install -r "$app/requirements.txt"
 popd
 
 #=================================================

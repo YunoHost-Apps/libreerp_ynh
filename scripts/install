@@ -48,7 +48,7 @@ pushd "$install_dir"
     venv/bin/pip3 install --upgrade pip
     venv/bin/pip3 install wheel
     venv/bin/pip3 install 'cython<3'
-    venv/bin/pip3 install -r "$appname/requirements.txt"
+    venv/bin/pip3 install -r "$app/requirements.txt"
 popd
 
 #=================================================
