@@ -55,6 +55,8 @@ pushd "$install_dir"
     venv/bin/pip3 install -r "$appname/requirements.txt"
 popd
 
+chown -R $app:$app "$install_dir"
+
 #=================================================
 # RESTORE VARIOUS FILES
 #=================================================
