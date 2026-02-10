@@ -21,11 +21,14 @@ code = "https://github.com/odoo/odoo"
 cpe = "cpe:2.3:a:odoo:odoo"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 12.1.39"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
+
 ldap = true
 sso = true
+
 disk = "500M"
 ram.build = "500M"
 ram.runtime = "200M"

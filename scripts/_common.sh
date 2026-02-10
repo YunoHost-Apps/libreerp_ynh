@@ -1,10 +1,9 @@
 #!/bin/bash
 
 #=================================================
-# COMMON VARIABLES
+# COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
-appname="libreerp"
 FORKNAME="odoo"
 
 swap_needed=1024
@@ -12,37 +11,33 @@ swap_needed=1024
 conf_file="/etc/$app/main.conf"
 
 if [ "$app_version" = "9" ] || [ "$app_version" = "8" ]; then
-    bin_file="$install_dir/venv/bin/python3 $install_dir/$appname/$FORKNAME.py"
+    bin_file="$install_dir/venv/bin/python3 $install_dir/$app/$FORKNAME.py"
 else
-    bin_file="$install_dir/venv/bin/python3 $install_dir/$appname/$FORKNAME-bin"
+    bin_file="$install_dir/venv/bin/python3 $install_dir/$app/$FORKNAME-bin"
 fi
-
-#=================================================
-# PERSONAL HELPERS
-#=================================================
 
 function debranding() {
     # Remove Odoo references to avoid trademark issue
-    if [ -d "$install_dir/$appname/$FORKNAME" ]; then
-        python_app="$install_dir/$appname/$FORKNAME"
+    if [ -d "$install_dir/$app/$FORKNAME" ]; then
+        python_app="$install_dir/$app/$FORKNAME"
     else
-        python_app="$install_dir/$appname/openerp"
+        python_app="$install_dir/$app/openerp"
     fi
-    find "$install_dir/$appname" -type f \( -iname '*.xml' -o -iname '*.po' \) -exec sed -i 's/Powered by <a[^>]*>Odoo<\/a>//g' {} \;
-    find "$install_dir/$appname" -type f \( -iname '*.xml' -o -iname '*.po' \) -exec sed -i 's/<a[^>]*>Powered by <[^>]*>Odoo<\/[^>]*><\/a>//g' {} \;
-    find "$install_dir/$appname" -type f \( -iname '*.xml' -o -iname '*.po' \) -exec sed -i 's/Powered by <[^>]*>Odoo<\/[^>]*>//g' {} \;
-    find "$install_dir/$appname" -type f \( -iname '*.xml' -o -iname '*.po' \) -exec sed -i 's/Powered by <[^>]*><img[^>]*Odoo[^>]*><\/a>//g' {} \;
-    if test -f "$install_dir/$appname/addons/web/static/src/xml/base.xml"; then
-        sed -i 's/<a[^>]*>My Odoo.com account<\/a>//g' "$install_dir/$appname/addons/web/static/src/xml/base.xml"
-        sed -i 's/<a[^>]*>Documentation<\/a>//g' "$install_dir/$appname/addons/web/static/src/xml/base.xml"
-        sed -i 's/<a[^>]*>Support<\/a>//g' "$install_dir/$appname/addons/web/static/src/xml/base.xml"
+    find "$install_dir/$app" -type f \( -iname '*.xml' -o -iname '*.po' \) -exec sed -i 's/Powered by <a[^>]*>Odoo<\/a>//g' {} \;
+    find "$install_dir/$app" -type f \( -iname '*.xml' -o -iname '*.po' \) -exec sed -i 's/<a[^>]*>Powered by <[^>]*>Odoo<\/[^>]*><\/a>//g' {} \;
+    find "$install_dir/$app" -type f \( -iname '*.xml' -o -iname '*.po' \) -exec sed -i 's/Powered by <[^>]*>Odoo<\/[^>]*>//g' {} \;
+    find "$install_dir/$app" -type f \( -iname '*.xml' -o -iname '*.po' \) -exec sed -i 's/Powered by <[^>]*><img[^>]*Odoo[^>]*><\/a>//g' {} \;
+    if test -f "$install_dir/$app/addons/web/static/src/xml/base.xml"; then
+        sed -i 's/<a[^>]*>My Odoo.com account<\/a>//g' "$install_dir/$app/addons/web/static/src/xml/base.xml"
+        sed -i 's/<a[^>]*>Documentation<\/a>//g' "$install_dir/$app/addons/web/static/src/xml/base.xml"
+        sed -i 's/<a[^>]*>Support<\/a>//g' "$install_dir/$app/addons/web/static/src/xml/base.xml"
     fi
     cp ../conf/logo_type.png  "$python_app/addons/base/static/img/logo_white.png"
 }
 
 function setup_files() {
 	source_id="main_${app_version}_oca"
-    ynh_setup_source --source_id="$source_id" --dest_dir="$install_dir/$appname"
+    ynh_setup_source --source_id="$source_id" --dest_dir="$install_dir/$app"
 
     debranding
     mkdir -p "$install_dir/custom-addons"
@@ -50,7 +45,6 @@ function setup_files() {
     chmod 750 "$install_dir"
     chmod -R o-rwx "$install_dir"
     chown -R "$app:$app" "$install_dir"
-
     touch "/var/log/$app.log"
     chown "$app:$app" "/var/log/$app.log"
 
@@ -61,12 +55,12 @@ function setup_files() {
         chown -R "$app:$app" "$(dirname "$conf_file")"
 
         # Autoinstall the LDAP auth module
-        if [ -f "$install_dir/$appname/$FORKNAME-bin" ]; then
-            ynh_replace_string --target_file="$install_dir/$appname/addons/auth_ldap/__manifest__.py" \
-                --match_string="^{$" --replace_string="{'auto_install': True,"
+        if [ -f "$install_dir/$app/$FORKNAME-bin" ]; then
+            ynh_replace --file="$install_dir/$app/addons/auth_ldap/__manifest__.py" \
+                --match="^{$" --replace="{'auto_install': True,"
         else
-            ynh_replace_string --target_file="$install_dir/$appname/addons/auth_ldap/__openerp__.py" \
-                --match_string="'auto_install': False" --replace_string="'auto_install': True"
+            ynh_replace --file="$install_dir/$app/addons/auth_ldap/__openerp__.py" \
+                --match="'auto_install': False" --replace="'auto_install': True"
         fi
     fi
 }
@@ -76,23 +70,23 @@ function setup_database() {
     ynh_configure server.conf "$conf_file"
     chown "$app:$app" "$conf_file"
     # Load translation
-    #param=" --without-demo True --addons-path $install_dir/$appname/addons --db_user $app --db_password $db_pwd --db_host 127.0.0.1 --db_port 5432 --db-filter '^$app\$' -d $app "
+    #param=" --without-demo True --addons-path $install_dir/$app/addons --db_user $app --db_password $db_pwd --db_host 127.0.0.1 --db_port 5432 --db-filter '^$app\$' -d $app "
     param=" -c $conf_file -d $app "
-    ynh_exec_as "$app" $bin_file --config="$conf_file" --stop-after-init --init=base --database="$app"
-    ynh_exec_as "$app" $bin_file --config="$conf_file" --stop-after-init --init=auth_ldap --database="$app"
-    ynh_exec_as "$app" $bin_file --config="$conf_file" --stop-after-init --load-language=$lang --database="$app"
+    ynh_exec_as_app $bin_file -c "$conf_file" --stop-after-init -i base -d "$app"
+    ynh_exec_as_app $bin_file -c "$conf_file" --stop-after-init -i auth_ldap -d "$app"
+    ynh_exec_as_app $bin_file -c "$conf_file" --stop-after-init --load-language $lang -d "$app"
     # Configure language, timezone and ldap
-    ynh_exec_as "$app" $bin_file shell --config="$conf_file" --database="$app" <<< \
+    ynh_exec_as_app $bin_file shell -c "$conf_file" -d "$app" <<< \
 "
 self.env['res.users'].search([['login', '=', 'admin']])[0].write({'password': '$admin_password'})
 self.env.cr.commit()
 "
-    ynh_exec_as "$app" $bin_file shell --config="$conf_file" --database="$app" <<< \
+    ynh_exec_as_app $bin_file shell -c "$conf_file" -d "$app" <<< \
 "
 self.write({'tz':'$tz','lang':'$lang'})
 self.env.cr.commit()
 "
-    ynh_exec_as "$app" $bin_file shell --config="$conf_file" --database="$app" <<< \
+    ynh_exec_as_app $bin_file shell -c "$conf_file" -d "$app" <<< \
 "
 template=env['res.users'].create({
   'login':'template',
@@ -135,12 +129,8 @@ ynh_configure () {
 		content3="list_db = False"
 	fi
 
-	ynh_add_config --template="$TEMPLATE" --destination="$DEST"
+	ynh_config_add --template="$TEMPLATE" --destination="$DEST"
 }
-
-#=================================================
-# EXPERIMENTAL HELPERS
-#=================================================
 
 # Add swap
 #
@@ -164,7 +154,7 @@ ynh_add_swap () {
 	# Swap on SD card only if it's is specified
 	if ynh_is_main_device_a_sd_card && [ "$SD_CARD_CAN_SWAP" == "0" ]
 	then
-		ynh_print_warn --message="The main mountpoint of your system '/' is on an SD card, swap will not be added to prevent some damage of this one, but that can cause troubles for the app $app. If you still want activate the swap, you can relaunch the command preceded by 'SD_CARD_CAN_SWAP=1'"
+		ynh_print_warn "The main mountpoint of your system '/' is on an SD card, swap will not be added to prevent some damage of this one, but that can cause troubles for the app $app. If you still want activate the swap, you can relaunch the command preceded by 'SD_CARD_CAN_SWAP=1'"
 		return
 	fi
 
@@ -190,6 +180,17 @@ ynh_add_swap () {
 	# If there's enough space for a swap, and no existing swap here
 	if [ $swap_size -ne 0 ] && [ ! -e /swap_$app ]
 	then
+		# Check if / is mounted on btrfs
+		if [ "$(awk '$2 == "/" {print $3}' /proc/mounts)" = "btrfs" ]
+		then
+			if [ "$(uname -r | awk -F. '{print $1}')" -lt 5 ]
+			then
+				ynh_print_warn --message="The main mountpoint of your system '/' is on an BTRFS filesystem, but current kernel does not support swap files on BTRFS. Swap file will not be added to prevent file system corruption. If you still want to activate the swap, please update your kernel to at least version 5."
+				return
+			fi
+			truncate -s 0 /swap_$app
+			chattr +C /swap_$app
+		fi
 		# Preallocate space for the swap file, fallocate may sometime not be used, use dd instead in this case
 		if ! fallocate -l ${swap_size}K /swap_$app
 		then
@@ -233,7 +234,3 @@ ynh_is_main_device_a_sd_card () {
 		return 1
 	fi
 }
-
-#=================================================
-# FUTURE OFFICIAL HELPERS
-#=================================================
