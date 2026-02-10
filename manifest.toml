@@ -1,0 +1,172 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "libreerp"
+name = "LibreERP"
+description.en = "Suite of business apps (ERP: CRM, Accounting, Point of Sale, HR, Purchases...)"
+description.fr = "Une collection d'apps de gestion d'entreprise (ERP : CRM, Comptabilité, Point de Vente, RH, Achats...)"
+
+version = "16.0~ynh4"
+
+maintainers = ["ljf"]
+
+[upstream]
+license = "LGPL-3.0-only"
+website = "https://odoo.com"
+demo = "https://www.odoo.com/trial"
+admindoc = "https://www.odoo.com/documentation/16.0/administration.html"
+userdoc = "https://www.odoo.com/documentation/16.0/applications.html"
+code = "https://github.com/odoo/odoo"
+cpe = "cpe:2.3:a:odoo:odoo"
+
+[integration]
+yunohost = ">= 12.1.39"
+helpers_version = "2.1"
+architectures = "all"
+multi_instance = true
+
+ldap = true
+sso = true
+
+disk = "500M"
+ram.build = "500M"
+ram.runtime = "200M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.app_version]
+    ask.en = "Choose the version you want"
+    ask.fr = "Choisissez la version désirée"
+    type = "select"
+    choices = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"]
+    default = "16"
+
+    [install.lang]
+    ask.en = "Choose the application language"
+    ask.fr = "Choisissez la langue de l'application"
+    type = "select"
+    choices = ["sq_AL", "am_ET", "ar_SY", "eu_ES", "bs_BA", "bg_BG", "my_MM", "ca_ES", "zh_CN", "zh_HK", "zh_TW", "hr_HR", "cs_CZ", "da_DK", "nl_BE", "nl_NL", "en_AU", "en_GB", "en_US", "et_EE", "fi_FI", "fr_BE", "fr_CA", "fr_CH", "fr_FR", "gl_ES", "ka_GE", "de_CH", "de_DE", "el_GR", "gu_IN", "he_IL", "hi_IN", "hu_HU", "id_ID", "it_IT", "ja_JP", "kab_DZ", "ko_KP", "ko_KR", "lo_LA", "lv_LV", "lt_LT", "mk_MK", "mn_MN", "nb_NO", "fa_IR", "pl_PL", "pt_BR", "pt_PT", "ro_RO", "ru_RU", "sr_RS", "sr@latin", "sk_SK", "sl_SI", "es_AR", "es_BO", "es_CL", "es_CO", "es_CR", "es_DO", "es_EC", "es_GT", "es_MX", "es_PA", "es_PE", "es_PY", "es_UY", "es_VE", "es_ES", "sv_SE", "te_IN", "th_TH", "tr_TR", "uk_UA", "vi_VN"]
+    default = "en_US"
+
+    [install.tz]
+    ask.en = "Choose a timezone"
+    ask.fr = "Choisissez un fuseau horaire"
+    type = "string"
+    default = "Etc/UTC"
+
+    [install.admin]
+    type = "user"
+
+    [install.admin_password]
+    ask.en = "Choose a strong master admin password"
+    ask.fr = "Choisissez un mot de passe maître fort pour l'administration"
+    type = "password"
+
+[resources]
+    [resources.sources]
+    [resources.sources.main_18_oca]
+    url = "https://github.com/OCA/OCB/archive/b666a56fd345ccc404cba2c532bb47fdb31c63e0.tar.gz"
+    sha256 = "175a9626377939e0131d67a457c492dc1e1d0c4cb6f32007916a15d82619fae2"
+    prefetch = false
+
+    [resources.sources.main_17_oca]
+    url = "https://github.com/OCA/OCB/archive/c5b2b71479460452f25da22acb048bd129e044b8.tar.gz"
+    sha256 = "ae89a7bc145b40f5f5a46be3251b7a05a22df133ea4dd010f163b0bb20a8d1a9"
+    prefetch = false
+
+    [resources.sources.main_16_oca]
+    url = "https://github.com/OCA/OCB/archive/cddbc118ec76f31645f82033cd5b0e73b9b86364.tar.gz"
+    sha256 = "75e70199962e962500c7d4b79382154d00b1d625480a23cbd00dedee5a203c61"
+    prefetch = false
+
+    [resources.sources.main_15_oca]
+    url = "https://github.com/OCA/OCB/archive/ebba5c2816c5d7b3912f888472387762f5354ed9.tar.gz"
+    sha256 = "a53ac9714a9bcf45fde8ee65f6d57bb8b32cc3c47ccb00424ffa96477534e11a"
+    prefetch = false
+
+    [resources.sources.main_14_oca]
+    url = "https://github.com/OCA/OCB/archive/59cf062c23728ea568b80688db94215a5c73af19.tar.gz"
+    sha256 = "f12f366a92ff70b5995167dd4e2875a38cf386464c8fb26a94c4d344a21d652c"
+    prefetch = false
+
+    [resources.sources.main_13_oca]
+    url = "https://github.com/OCA/OCB/archive/e473a797f8f5df16901efa3e099c1e06187e8db1.tar.gz"
+    sha256 = "3f22bb205e22dd9bbe6822163b5ae5bcd0072138e9302aa2f573080f46ec21cd"
+    prefetch = false
+
+    [resources.sources.main_12_oca]
+    url = "https://github.com/OCA/OCB/archive/978b2cf5c9356317107c8018e5aa5d233ecd23bc.tar.gz"
+    sha256 = "e9306176efac13570b0340e09ec3a6eebcac7993bb8d254370c316f2cea8f85f"
+    prefetch = false
+
+    [resources.sources.main_11_oca]
+    url = "https://github.com/OCA/OCB/archive/700f30ab649eaf2b6c3f83adb405dc28704a2f83.tar.gz"
+    sha256 = "9f270f20d512751caae2ff79fb9f2227f9fdf619ff36a34d5e4a20b9eedd955c"
+    prefetch = false
+
+    [resources.sources.main_10_oca]
+    url = "https://github.com/OCA/OCB/archive/83823128c2225c5ad826cbea5298ab4564e8ab4e.tar.gz"
+    sha256 = "ca18691e1f43556f1b16abd2a97098ae93c41148c717d88c7bd5ccf3c4869e36"
+    prefetch = false
+
+    [resources.sources.main_9_oca]
+    url = "https://github.com/OCA/OCB/archive/7dde2945201e3e33c46a2d52ff9ba55f903432a1.tar.gz"
+    sha256 = "1720ab772fd32a8fd009c80eb6bce341da8d73ce86a5bc61b37b8edf338e74cd"
+    prefetch = false
+
+    [resources.sources.main_8_oca]
+    url = "https://github.com/OCA/OCB/archive/279529c088d28b8ad58da3314a829b0b9421dff0.tar.gz"
+    sha256 = "f4e5bda61d27d401da368cdcb46d6a86878cf4804f04f04400a2a2b61803861c"
+    prefetch = false
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.ports]
+    main.default = 8069
+    chat.default = 8072
+
+    [resources.apt]
+    packages = [
+        "build-essential",
+        "postgresql",
+        "xfonts-75dpi",
+        "xfonts-base",
+        "gcc",
+        "make",
+        "libtool",
+        "python3",
+        "python3-pip",
+        "python3-dev",
+        "python3-venv",
+        "python3-wheel",
+        "libfreetype-dev",
+        "libxml2-dev",
+        "libzip-dev",
+        "libsasl2-dev",
+        "python3-setuptools",
+        "node-less",
+        "libjpeg-dev",
+        "zlib1g-dev",
+        "libpq-dev",
+        "libxslt1-dev",
+        "libldap2-dev",
+        "libtiff-dev",
+        "libopenjp2-7-dev",
+        "libcap-dev",
+        "libffi-dev",
+    ]
+
+    [resources.database]
+    type = "postgresql"

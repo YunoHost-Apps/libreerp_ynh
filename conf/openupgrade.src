@@ -1,5 +1,0 @@
-SOURCE_URL=https://raw.githubusercontent.com/OCA/OpenUpgrade/11.0/scripts/migrate.py
-SOURCE_SUM=362c8cf9b43a3aaddb440e642205e9596da78e28d1e47b582612ced671d95e0b
-SOURCE_FILE=odoo-migrate-11.py
-SOURCE_SUM_PRG=sha256sum
-SOURCE_EXTRACT=False
