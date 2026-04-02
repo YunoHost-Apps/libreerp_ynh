@@ -1,5 +1,6 @@
 #!/bin/bash
 source /usr/share/yunohost/helpers
+source _common.sh
 
 CUSTOM_ADDONS=$install_dir/custom-addons
 VENV=$install_dir/venv
@@ -84,7 +85,7 @@ run__update_code() {
   ynh_script_progression "Updating odoo addons and restarting the service"
   {
   # try a partial upgrade first using module module_auto_update
-  ynh_exec_as_app $VENV/bin/python $install_dir/libreerp/odoo-bin shell --no-http -d $app -c /etc/$app/main.conf --logfile /proc/self/fd/1 <<ODOODOC
+  ynh_exec_as_app $bin_file shell --no-http -d $app -c $conf_file --logfile /proc/self/fd/1 <<ODOODOC
 if hasattr(self.env['ir.module.module'], 'upgrade_changed_checksum_shell'):
   self.env['ir.module.module'].upgrade_changed_checksum_shell()
 else:
@@ -99,7 +100,7 @@ else:
 ODOODOC
   # if anything in the above code block fails, run a full upgrade of all modules
   } ||\
-  ynh_exec_as_app $VENV/bin/python $install_dir/libreerp/odoo-bin --no-http -d $app -c /etc/$app/main.conf --logfile /proc/self/fd/1 -u all --stop-after-init
+  ynh_exec_as_app $bin_file --no-http -d $app -c $conf_file --logfile /proc/self/fd/1 -u all --stop-after-init
   sudo systemctl restart $app
 }
 
