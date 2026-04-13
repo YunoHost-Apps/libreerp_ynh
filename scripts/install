@@ -49,8 +49,6 @@ pushd "$install_dir"
     venv/bin/pip3 install wheel
     if [[ $YNH_DEBIAN_VERSION == "bookworm" ]]; then    
         venv/bin/pip3 install 'cython<3'
-    else
-        venv/bin/pip3 install 'cython'
     fi
     venv/bin/pip3 install -r "$app/requirements.txt"
 popd
