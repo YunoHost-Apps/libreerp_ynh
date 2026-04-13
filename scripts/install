@@ -47,7 +47,11 @@ pushd "$install_dir"
     python3 -m venv venv
     venv/bin/pip3 install --upgrade pip
     venv/bin/pip3 install wheel
-    venv/bin/pip3 install 'cython<3'
+    if [[ $YNH_DEBIAN_VERSION == "bookworm" ]]; then    
+        venv/bin/pip3 install 'cython<3'
+    else
+        venv/bin/pip3 install 'cython'
+    fi
     venv/bin/pip3 install -r "$app/requirements.txt"
 popd
 
