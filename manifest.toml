@@ -166,6 +166,8 @@ ram.runtime = "200M"
         "libopenjp2-7-dev",
         "libcap-dev",
         "libffi-dev",
+        "python3-gevent",
+        "python3-greenlet",
     ]
 
     [resources.database]
