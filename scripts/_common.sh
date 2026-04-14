@@ -4,6 +4,8 @@
 # COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
+tz=$(timedatectl show -p Timezone --value)
+
 FORKNAME="odoo"
 
 swap_needed=1024
