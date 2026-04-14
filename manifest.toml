@@ -194,6 +194,7 @@ ram.runtime = "200M"
         "python3-zeep",
         "postgresql",
         "python3-ldap",
+        "python3-pypdf2",
 
     ]
 
