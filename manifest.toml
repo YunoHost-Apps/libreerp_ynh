@@ -45,8 +45,8 @@ ram.runtime = "200M"
     ask.en = "Choose the version you want"
     ask.fr = "Choisissez la version désirée"
     type = "select"
-    choices = ["16", "17", "18", "19"]
-    default = "19"
+    choices = ["16", "17", "18"]
+    default = "18"
 
     [install.lang]
     ask.en = "Choose the application language"
@@ -71,14 +71,6 @@ ram.runtime = "200M"
 
 [resources]
     [resources.sources]
-    [resources.sources.main_19_oca]
-    url = "https://github.com/OCA/OCB/archive/41b5d41bf21b29dc891fee42b7d317b47caf00bf.tar.gz"
-    sha256 = "5c443d886ae1cb4f4bcc34c99b82e976a5f6ce7a28199fbc3b29867c8260d835"
-    prefetch = false
-
-    autoupdate.strategy = "latest_github_commit"
-    autoupdate.branch = "19.0"
-
     [resources.sources.main_18_oca]
     url = "https://github.com/OCA/OCB/archive/b666a56fd345ccc404cba2c532bb47fdb31c63e0.tar.gz"
     sha256 = "175a9626377939e0131d67a457c492dc1e1d0c4cb6f32007916a15d82619fae2"
