@@ -93,6 +93,7 @@ self.env.cr.commit()
 self.write({'tz':'$tz','lang':'$lang'})
 self.env.cr.commit()
 "
+if [[ $app_version < "19" ]]; then  
     ynh_exec_as_app $bin_file shell -c "$conf_file" -d "$app" <<< \
 "
 template=env['res.users'].create({
@@ -115,6 +116,30 @@ self.company_id.ldaps.create({
 })
 self.env.cr.commit()
 "
+else
+    ynh_exec_as_app $bin_file shell -c "$conf_file" -d "$app" <<< \
+"
+template=env['res.users'].create({
+  'login':'template',
+  'password':'',
+  'name':'template',
+  'email':'template',
+  'groups_id': [(6, 0, [env.ref('base.group_user').id])],
+  'tz':'$tz',
+  'lang':'$lang'
+})
+self.env.cr.commit()
+self.company_id.ldaps.create({
+  'ldap_server':'localhost',
+  'ldap_server_port':389,
+  'ldap_base':'ou=users, dc=yunohost,dc=org',
+  'ldap_filter':'uid=%s',
+  'user':template.id,
+  'company':self.company_id.id
+})
+self.env.cr.commit()
+"
+fi
     export preinstall=0
     ynh_configure server.conf "$conf_file"
     chown "$app:$app" "$conf_file"
