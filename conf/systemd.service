@@ -10,7 +10,8 @@ PermissionsStartOnly=true
 User=__APP__
 Group=__APP__
 Environment=PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
-ExecStart=__BIN_FILE__ --config __CONF_FILE__ --logfile /var/log/__APP__.log
+WorkingDirectory=__INSTALL_DIR__/
+ExecStart=python3 odoo-bin --config __CONF_FILE__ --logfile /var/log/__APP__.log
 Restart=always
 RestartSec=3
 StandardOutput=journal+console
