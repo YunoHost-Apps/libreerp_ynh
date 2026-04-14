@@ -71,6 +71,11 @@ ram.runtime = "200M"
 
 [resources]
     [resources.sources]
+    [resources.sources.main_19_oca]
+    url = "https://github.com/OCA/OCB/archive/41b5d41bf21b29dc891fee42b7d317b47caf00bf.tar.gz"
+    sha256 = "5c443d886ae1cb4f4bcc34c99b82e976a5f6ce7a28199fbc3b29867c8260d835"
+    prefetch = false
+
     [resources.sources.main_18_oca]
     url = "https://github.com/OCA/OCB/archive/4f7561521f28d4e02bcd6c22329283bd75f501bc.tar.gz"
     sha256 = "a42c579549f85318ef20706ead45ba5451a8ef58fb44da0e9beed3a81a9cde83"
