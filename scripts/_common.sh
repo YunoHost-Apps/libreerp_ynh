@@ -57,11 +57,18 @@ function setup_files() {
         # Autoinstall the LDAP auth module
         if [ -f "$install_dir/$app/$FORKNAME-bin" ]; then
             ynh_replace --file="$install_dir/$app/addons/auth_ldap/__manifest__.py" \
-                --match="^{$" --replace="{'auto_install': True,"
+                        --match="^{$" \
+						--replace="{'auto_install': True,"
         else
             ynh_replace --file="$install_dir/$app/addons/auth_ldap/__openerp__.py" \
-                --match="'auto_install': False" --replace="'auto_install': True"
+                		--match="'auto_install': False" \
+						--replace="'auto_install': True"
         fi
+    fi
+	if [[ $YNH_DEBIAN_VERSION != "bookworm" ]]; then    
+        ynh_replace --file="$install_dir/$app/setup.py" \
+					--match="PyPDF2" \
+					--replace="PyPDF"
     fi
 }
 
