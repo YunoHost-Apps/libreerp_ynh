@@ -142,7 +142,7 @@ ram.runtime = "200M"
         "build-essential",
 
         # support for multilingual fonts
-        "fonts-dejavu-core" | "fonts-freefont-ttf" | "fonts-freefont-otf" | "fonts-noto-core",
+        "fonts-dejavu-core\\|fonts-freefont-ttf\\|fonts-freefont-otf\\|fonts-noto-core",
         "fonts-inconsolata",
         "fonts-font-awesome",
         "fonts-roboto-unhinted",
@@ -168,7 +168,7 @@ ram.runtime = "200M"
         "python3-libsass",
         
         # After lxml 5.2, lxml-html-clean is in a separate package
-        "python3-lxml-html-clean" | "python3-lxml",
+        "python3-lxml-html-clean\\|python3-lxml",
         "python3-markupsafe",
         "python3-num2words",
         "python3-ofxparse",
@@ -178,7 +178,7 @@ ram.runtime = "200M"
         "python3-psutil",
         "python3-psycopg2",
         "python3-openssl",
-        "python3-pypdf2" | "python3-pypdf",
+        "python3-pypdf2\\|python3-pypdf",
         "python3-rjsmin",
         "python3-qrcode",
         "python3-renderpm",
