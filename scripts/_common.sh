@@ -124,7 +124,6 @@ template=env['res.users'].create({
   'password':'',
   'name':'template',
   'email':'template',
-  'groups_id': [(6, 0, [env.ref('base.group_user').id])],
   'tz':'$tz',
   'lang':'$lang'
 })
