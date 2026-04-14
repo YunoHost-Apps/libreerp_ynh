@@ -24,12 +24,7 @@ ynh_script_progression "Restoring the app main directory..."
 
 ynh_restore "$install_dir"
 
-chmod -R o-rwx "$install_dir"
-chown -R "$app:$app" "$install_dir"
-
 ynh_restore "$conf_file"
-chmod 400 "$conf_file"
-chown "$app:$app" "$conf_file"
 
 #=================================================
 # RESTORE THE POSTGRESQL DATABASE
@@ -41,22 +36,6 @@ ynh_psql_db_shell <<< "update pg_database set encoding = pg_char_to_encoding('UT
 
 # Restore the database contents
 ynh_psql_db_shell < ./db.sql
-
-#=================================================
-# BUILD APP
-#=================================================
-ynh_script_progression "Building app..."
-
-pushd "$install_dir"
-    python3 -m venv venv
-    venv/bin/pip3 install --upgrade pip
-    venv/bin/pip3 install wheel
-    venv/bin/pip3 install -r "$app/requirements.txt"
-popd
-
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
-chown -R "$app:$app" "$install_dir"
 
 #=================================================
 # RESTORE VARIOUS FILES
