@@ -13,7 +13,7 @@ conf_file="/etc/$app/main.conf"
 if [ "$app_version" = "9" ] || [ "$app_version" = "8" ]; then
     bin_file="$install_dir/venv/bin/python3 $install_dir/$app/$FORKNAME.py"
 else
-    bin_file="python3 $install_dir/$FORKNAME-bin"
+    bin_file="python3 $install_dir/$app/$FORKNAME-bin"
 fi
 
 function debranding() {
