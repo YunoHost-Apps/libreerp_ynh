@@ -45,8 +45,8 @@ ram.runtime = "200M"
     ask.en = "Choose the version you want"
     ask.fr = "Choisissez la version désirée"
     type = "select"
-    choices = ["8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"]
-    default = "16"
+    choices = ["17", "18", "19"]
+    default = "19"
 
     [install.lang]
     ask.en = "Choose the application language"
