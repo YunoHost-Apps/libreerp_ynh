@@ -66,8 +66,8 @@ ram.runtime = "200M"
 [resources]
     [resources.sources]
     [resources.sources.main_18_oca]
-    url = "https://github.com/OCA/OCB/archive/b666a56fd345ccc404cba2c532bb47fdb31c63e0.tar.gz"
-    sha256 = "175a9626377939e0131d67a457c492dc1e1d0c4cb6f32007916a15d82619fae2"
+    url = "https://github.com/OCA/OCB/archive/3fbb6323e7113d3e1a00fe53eaf39b5642463dd9.tar.gz"
+    sha256 = "d3aede9f39cb2e15cff1d9117855dc3584ff7d825818f168b67c76c741930cfe"
     prefetch = false
 
     autoupdate.strategy = "latest_github_commit"
