@@ -4,17 +4,14 @@
 # COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
+tz=$(timedatectl show -p Timezone --value)
+
 FORKNAME="odoo"
 
 swap_needed=1024
 
 conf_file="/etc/$app/main.conf"
-
-if [ "$app_version" = "9" ] || [ "$app_version" = "8" ]; then
-    bin_file="$install_dir/venv/bin/python3 $install_dir/$app/$FORKNAME.py"
-else
-    bin_file="$install_dir/venv/bin/python3 $install_dir/$app/$FORKNAME-bin"
-fi
+bin_file="$install_dir/venv/bin/python3 $install_dir/$app/$FORKNAME-bin"
 
 function debranding() {
     # Remove Odoo references to avoid trademark issue
