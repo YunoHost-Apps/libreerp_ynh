@@ -7,7 +7,7 @@ name = "LibreERP"
 description.en = "Suite of business apps (ERP: CRM, Accounting, Point of Sale, HR, Purchases...)"
 description.fr = "Une collection d'apps de gestion d'entreprise (ERP : CRM, Comptabilité, Point de Vente, RH, Achats...)"
 
-version = "2026.04.06~ynh2"
+version = "2026.05.06~ynh1"
 
 maintainers = ["ljf"]
 
