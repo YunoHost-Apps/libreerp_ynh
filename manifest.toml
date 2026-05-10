@@ -7,7 +7,7 @@ name = "LibreERP"
 description.en = "Suite of business apps (ERP: CRM, Accounting, Point of Sale, HR, Purchases...)"
 description.fr = "Une collection d'apps de gestion d'entreprise (ERP : CRM, Comptabilité, Point de Vente, RH, Achats...)"
 
-version = "2026.05.06~ynh1"
+version = "2026.05.09~ynh1"
 
 maintainers = ["ljf"]
 
@@ -68,15 +68,15 @@ ram.runtime = "200M"
 
     # This one is only for the autoupdater to update correctly the version nummer, it won’t be used later
     [resources.sources.main]
-    url = "https://github.com/OCA/OCB/archive/05d98ca71ee27a6dd62918c0cc754beb25e8e674.tar.gz"
-    sha256 = "ba3c7c6db476b71a43bc539616ead74e5fbb04589c0018427ba47c8d89807b73"
+    url = "https://github.com/OCA/OCB/archive/62e2377089b51fefee9ca7514faeb72800113a94.tar.gz"
+    sha256 = "6ac17fcecf29e6fe9fe7ae501fab99052055480521bf11fa248026c4ec68d8a8"
     prefetch = false
     autoupdate.upstream = "https://github.com/OCA/OCB"
     autoupdate.strategy = "latest_github_commit"
 
     [resources.sources.main_18_oca]
-    url = "https://github.com/OCA/OCB/archive/05d98ca71ee27a6dd62918c0cc754beb25e8e674.tar.gz"
-    sha256 = "ba3c7c6db476b71a43bc539616ead74e5fbb04589c0018427ba47c8d89807b73"
+    url = "https://github.com/OCA/OCB/archive/62e2377089b51fefee9ca7514faeb72800113a94.tar.gz"
+    sha256 = "6ac17fcecf29e6fe9fe7ae501fab99052055480521bf11fa248026c4ec68d8a8"
     prefetch = false
 
     autoupdate.upstream = "https://github.com/OCA/OCB"
@@ -84,8 +84,8 @@ ram.runtime = "200M"
     autoupdate.branch = "18.0"
 
     [resources.sources.main_17_oca]
-    url = "https://github.com/OCA/OCB/archive/a8984b016e85484e8f62bbf5c0b0257a9f5e327c.tar.gz"
-    sha256 = "ed463d213c2cfad61489d9e16b71f43157b2977f39d3cdf9e0d4b321b39ecaa3"
+    url = "https://github.com/OCA/OCB/archive/23903cbb415088feaeae3d3330222b9826578a06.tar.gz"
+    sha256 = "9068c473fc666de24f6f8981a0c8b30e26ff8656560c224e3ed47dde2ad97838"
     prefetch = false
 
     autoupdate.upstream = "https://github.com/OCA/OCB"
