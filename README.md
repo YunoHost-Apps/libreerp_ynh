@@ -12,7 +12,7 @@ Suite of business apps (ERP: CRM, Accounting, Point of Sale, HR, Purchases...)
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://odoo.com)
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://www.odoo.com/trial)
-[![Version: 2026.05.06~ynh1](https://img.shields.io/badge/Version-2026.05.06~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/libreerp/)
+[![Version: 2026.05.09~ynh1](https://img.shields.io/badge/Version-2026.05.09~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/libreerp/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/libreerp"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
