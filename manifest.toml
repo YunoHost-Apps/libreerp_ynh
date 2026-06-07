@@ -7,7 +7,7 @@ name = "LibreERP"
 description.en = "Suite of business apps (ERP: CRM, Accounting, Point of Sale, HR, Purchases...)"
 description.fr = "Une collection d'apps de gestion d'entreprise (ERP : CRM, Comptabilité, Point de Vente, RH, Achats...)"
 
-version = "2026.05.31~ynh1"
+version = "2026.06.06~ynh1"
 
 maintainers = ["ljf"]
 
@@ -68,15 +68,15 @@ ram.runtime = "200M"
 
     # This one is only for the autoupdater to update correctly the version nummer, it won’t be used later
     [resources.sources.main]
-    url = "https://github.com/OCA/OCB/archive/b40c7cfb47f3a81196d26680f56d3b35a02aff4e.tar.gz"
-    sha256 = "52db9c4714a8ce98af444d230761e3699c50d7d034f9eb06c5ec6f773dbbac14"
+    url = "https://github.com/OCA/OCB/archive/e3452b18f4a688e8797a07d2a222e46e164be48d.tar.gz"
+    sha256 = "c560c171cc30e84d1c0c56008005ef8fd72c5877e7df3a75c7890270e198ac32"
     prefetch = false
     autoupdate.upstream = "https://github.com/OCA/OCB"
     autoupdate.strategy = "latest_github_commit"
 
     [resources.sources.main_18_oca]
-    url = "https://github.com/OCA/OCB/archive/b40c7cfb47f3a81196d26680f56d3b35a02aff4e.tar.gz"
-    sha256 = "52db9c4714a8ce98af444d230761e3699c50d7d034f9eb06c5ec6f773dbbac14"
+    url = "https://github.com/OCA/OCB/archive/e3452b18f4a688e8797a07d2a222e46e164be48d.tar.gz"
+    sha256 = "c560c171cc30e84d1c0c56008005ef8fd72c5877e7df3a75c7890270e198ac32"
     prefetch = false
 
     autoupdate.upstream = "https://github.com/OCA/OCB"
@@ -84,8 +84,8 @@ ram.runtime = "200M"
     autoupdate.branch = "18.0"
 
     [resources.sources.main_17_oca]
-    url = "https://github.com/OCA/OCB/archive/d816c742201db350100248b2db4d21ad4eb3297e.tar.gz"
-    sha256 = "791ce43d079e3b85ba8e057b8d0c0e48dd876afab6b2dca38335f051fc7b3a31"
+    url = "https://github.com/OCA/OCB/archive/133e720cf67cc316ca4ebf75be704656035525d6.tar.gz"
+    sha256 = "fa8950de05fc4b683eff84937fd209f03947d65cda4fbbc4c35d2a9819b09156"
     prefetch = false
 
     autoupdate.upstream = "https://github.com/OCA/OCB"
@@ -93,8 +93,8 @@ ram.runtime = "200M"
     autoupdate.branch = "17.0"
 
     [resources.sources.main_16_oca]
-    url = "https://github.com/OCA/OCB/archive/4d1a63a08063e07159a637c743fa65a90c4780f0.tar.gz"
-    sha256 = "4da384459986bcaa809ef162a20d0338238cffdcb7333c650748418bac04ea20"
+    url = "https://github.com/OCA/OCB/archive/6423dda996ab7bd87ffa10bdb89a81d09955639c.tar.gz"
+    sha256 = "036ed1285f123fde274c355766fa0908a25aa24a7b8e04c6ef88486e1b26ff44"
     prefetch = false
 
     autoupdate.upstream = "https://github.com/OCA/OCB"
